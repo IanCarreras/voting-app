@@ -6,7 +6,7 @@ class NavBar extends Component {
   render() {
     return (
       <div className="navbar">
-        <h1 className="app-title">Voter</h1>
+        <h1 className="app-title">Vote</h1>
         <button className="add-pin-button"> + </button>
         <button className="log-button">Logout</button>
         <button className="log-button">
