@@ -1,7 +1,9 @@
 import { combineReducers } from 'redux'
 
+import polls from './pollsReducer'
+
 const rootReducer = combineReducers({
-  polls: (state = ['poll']) => state
+  polls
 })
 
 export default rootReducer
