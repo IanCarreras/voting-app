@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
 import './App.css'
 import Navbar from './components/navbar'
@@ -16,4 +17,8 @@ class App extends Component {
   }
 }
 
-export default App
+const mapStateToProps = ({ polls }) => {
+  return { polls }
+}
+
+export default connect(mapStateToProps)(App)
