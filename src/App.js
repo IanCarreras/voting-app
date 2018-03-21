@@ -25,8 +25,8 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = ({ polls }) => {
-  return { polls }
+const mapStateToProps = ({ polls, auth }) => {
+  return { polls, auth }
 }
 
 const mapDispatchToProps = (dispatch) => {
