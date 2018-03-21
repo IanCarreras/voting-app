@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 
+import Polls from '../render-polls'
+
 class Container extends Component {
   render() {
+    const { polls } = this.props
     return (
       <div>
-        <h2>Poll container</h2>
-        <p>Click on a poll to see the results and vote</p>
-        <p>Sign in to create a new poll</p>
+        <Polls polls={polls}/>
       </div>
     )
   }

@@ -19,7 +19,7 @@ class App extends Component {
       <div className="App">
         <Navbar />
         <header className="App-header">FCC Voter app</header>
-        <Container />
+        <Container polls={this.props.polls}/>
       </div>
     )
   }

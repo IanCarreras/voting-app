@@ -3,11 +3,11 @@ import {
   GET_POLLS
 } from '../constants'
 
-const BASE_URL = 'http://localhost:3000'
+const BASE_URL = 'http://localhost:3030'
 
 const getPolls = (polls) => {
   return (dispatch) => {
-    axios.get(`${BASE_URL}/polls`)
+    axios.get(`${BASE_URL}/poll`)
     .then( ({ data }) => {
       dispatch({
         type: GET_POLLS,
