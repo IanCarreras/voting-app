@@ -15,11 +15,12 @@ class App extends Component {
   }
 
   render() {
+    const { actions, auth, polls } = this.props
     return (
       <div className="App">
-        <Navbar />
+        <Navbar auth={auth} actions={actions}/>
         <header className="App-header">FCC Voter app</header>
-        <Container polls={this.props.polls}/>
+        <Container polls={polls}/>
       </div>
     )
   }

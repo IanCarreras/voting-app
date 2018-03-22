@@ -15,10 +15,10 @@ export default class AuthService {
 
   _doAuthentication(authResult) {
     this.setToken(authResult)
-    // store.dispatch({
-    //   type: 'CHANGE_STATUS',
-    //   payload: true
-    // })
+    store.dispatch({
+      type: 'CHANGE_STATUS',
+      payload: true
+    })
   }
 
   login() {
@@ -39,9 +39,9 @@ export default class AuthService {
 
   logout() {
     localStorage.removeItem('id_token')
-    // store.dispatch({
-    //   type: 'CHANGE_STATUS',
-    //   payload: false
-    // })
+    store.dispatch({
+      type: 'CHANGE_STATUS',
+      payload: false
+    })
   }
 }

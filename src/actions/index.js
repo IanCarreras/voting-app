@@ -1,6 +1,7 @@
 import axios from 'axios'
 import {
-  GET_POLLS
+  GET_POLLS,
+  CHANGE_STATUS
 } from '../constants'
 
 const BASE_URL = 'http://localhost:3030'
@@ -20,6 +21,14 @@ const getPolls = (polls) => {
   }
 }
 
+const changeStatus = (nextStatus) => {
+  return {
+    type: CHANGE_STATUS,
+    payload: nextStatus
+  }
+}
+
 export default {
-  getPolls
+  getPolls,
+  changeStatus
 }
