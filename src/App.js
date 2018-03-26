@@ -2,10 +2,12 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import actionCreators from './actions'
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import './App.css'
 import Navbar from './components/navbar'
-import Container from './components/container'
+import PollList from './components/container'
+import Poll from './components/poll'
 
 class App extends Component {
 
@@ -20,7 +22,12 @@ class App extends Component {
       <div className="App">
         <Navbar auth={auth} actions={actions}/>
         <header className="App-header">FCC Voter app</header>
-        <Container polls={polls}/>
+        <BrowserRouter>
+          <Switch>
+            <Route path="/" exact component={PollList} />
+            <Route path="/:id" component={Poll} />
+          </Switch>
+        </BrowserRouter>
       </div>
     )
   }

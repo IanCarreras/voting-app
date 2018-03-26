@@ -1,16 +1,17 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import actionCreators from '../../actions'
 
-import Polls from '../render-polls'
-
-class Container extends Component {
+class Poll extends Component {
   render() {
-    const { polls } = this.props
+    const pollId = this.props.match.params.id
+    //const poll = this.props.polls.find((poll) => poll._id === pollId )
+    console.log('props', this.props)
+
     return (
       <div>
-        <Polls polls={polls}/>
+        <h3></h3>
       </div>
     )
   }
@@ -24,4 +25,4 @@ const mapDispatchToProps = (dispatch) => {
   return { actions: bindActionCreators(actionCreators, dispatch)}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Container)
+export default connect(mapStateToProps, mapDispatchToProps)(Poll)
