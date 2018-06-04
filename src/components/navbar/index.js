@@ -19,7 +19,7 @@ class NavBar extends Component {
   }
 
   render() {
-    const { actions, auth } = this.props
+    const { auth } = this.props
     return (
       <div className="navbar">
         <h1 className="app-title">Vote</h1>

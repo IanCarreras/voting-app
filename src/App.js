@@ -17,7 +17,7 @@ class App extends Component {
   }
 
   render() {
-    const { actions, auth, polls } = this.props
+    const { actions, auth } = this.props
     return (
       <div className="App">
         <Navbar auth={auth} actions={actions}/>
