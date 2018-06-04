@@ -50,7 +50,7 @@ class Poll extends Component {
           {this.renderOptions(poll.answers)}
         </select>
         <button
-          disabled={this.state.selectedAnswer === ''}
+          disabled={this.props.auth.isLoggedIn === false}
         >Submit</button>
         <p>graph of poll results</p>
       </div>
