@@ -14,10 +14,16 @@ export default class AuthService {
   }
 
   _doAuthentication(authResult) {
-    this.setToken(authResult)
-    store.dispatch({
-      type: 'CHANGE_STATUS',
-      payload: true
+    this.lock.getUserInfo(authResult.accessToken, (err, profile) => {
+      if (err) return console.log(err)
+      this.setToken(authResult)
+      store.dispatch({
+        type: 'CHANGE_STATUS',
+        payload: {
+          isLoggedIn: true,
+          userId: profile.sub
+        }
+      })
     })
   }
 
@@ -41,7 +47,10 @@ export default class AuthService {
     localStorage.removeItem('id_token')
     store.dispatch({
       type: 'CHANGE_STATUS',
-      payload: false
+      payload: {
+        isLoggedIn: false,
+        userId: null
+      }
     })
   }
 }

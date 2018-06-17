@@ -6,7 +6,10 @@ import {
 import AuthService from '../lib/authService';
 
 const auth = new AuthService('M5mR8gceNB6uUm7XgdTPXI0JzgSQ7jwx', 'fretzila.auth0.com');
-Object.assign(auth, { isLoggedIn: auth.loggedIn() })
+Object.assign(auth, {
+  isLoggedIn: auth.loggedIn(),
+  userId: null
+})
 
 export default (state = auth, action) => {
   let newState = null
@@ -14,7 +17,8 @@ export default (state = auth, action) => {
   switch (action.type) {
     case CHANGE_STATUS:
       newState = _.cloneDeep(state)
-      newState.isLoggedIn = action.payload
+      newState.isLoggedIn = action.payload.isLoggedIn
+      newState.userId = action.payload.userId
       return newState;
     default:
       return state;
