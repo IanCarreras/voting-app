@@ -11,6 +11,7 @@ export default class AuthService {
     })
     this.lock.on('authenticated', this._doAuthentication.bind(this))
     this.login = this.login.bind(this)
+    this.logout = this.logout.bind(this)
   }
 
   _doAuthentication(authResult) {
