@@ -16,7 +16,8 @@ export default class AuthService {
   _doAuthentication(authResult) {
     this.lock.getUserInfo(authResult.accessToken, (err, profile) => {
       if (err) return console.log(err)
-      this.setToken(authResult)
+      this.setToken(authResult);
+      this.setUserId(profile.sub);
       store.dispatch({
         type: 'CHANGE_STATUS',
         payload: {
@@ -32,11 +33,19 @@ export default class AuthService {
   }
 
   loggedIn() {
-    return !!this.getToken()
+    return !!this.getToken() && !!this.getUserId();
+  }
+
+  setUserId(userId) {
+    localStorage.setItem('user_id', userId);
   }
 
   setToken(authObject) {
     localStorage.setItem('id_token', authObject.idToken)
+  }
+
+  getUserId() {
+    return localStorage.getItem('user_id');
   }
 
   getToken() {
@@ -45,6 +54,7 @@ export default class AuthService {
 
   logout() {
     localStorage.removeItem('id_token')
+    localStorage.removeItem('user_id')
     store.dispatch({
       type: 'CHANGE_STATUS',
       payload: {

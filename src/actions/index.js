@@ -1,7 +1,8 @@
 import axios from 'axios'
 import {
   GET_POLLS,
-  CHANGE_STATUS
+  CHANGE_STATUS,
+  VOTE
 } from '../constants'
 
 const BASE_URL = 'http://localhost:3030'
@@ -28,7 +29,23 @@ const changeStatus = (nextStatus) => {
   }
 }
 
+const vote = (answer, ) => {
+  return (dispatch, getState) => {
+    axios.put(`${BASE_URL}/poll/id/vote`, {
+      userId: getState().authReducer.userId,
+      answer
+    })
+    .then( ({ data }) => {
+      dispatch({
+        type: VOTE,
+        data
+      })
+    })
+  }
+}
+
 export default {
   getPolls,
-  changeStatus
+  changeStatus,
+  vote
 }
