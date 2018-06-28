@@ -10,6 +10,7 @@ class Poll extends Component {
     this.state = { selectedAnswer: '' }
 
     this.selectAnswer = this.selectAnswer.bind(this)
+    this.submitVote = this.submitVote.bind(this)
   }
 
   renderOptions(answers){
@@ -20,12 +21,24 @@ class Poll extends Component {
 
   selectAnswer(event){
     this.setState({ selectedAnswer: event.target.value })
+  }
 
+
+
+  submitVote(){
+    let pollId = this.props.match.params.id
+    let pollsLessOne = this.props.polls.reduce((arr, obj) => {
+    console.log(arr)
+      if (pollId !== obj._id) arr.push(obj)
+      return arr
+    }, [])
+    console.log('after reduce', pollsLessOne.length, pollsLessOne)
+    this.props.actions.vote(this.state.selectedAnswer, pollId, pollsLessOne)
   }
 
   render() {
     const pollId = this.props.match.params.id
-    const poll = this.props.polls.find((poll) => poll._id === pollId )
+    const poll = this.props.polls.find((poll) => poll._id === pollId)
 
     if (!poll) {
       return (
@@ -50,7 +63,7 @@ class Poll extends Component {
           {this.renderOptions(poll.answers)}
         </select>
         <button
-          disabled={this.props.auth.isLoggedIn === false}
+          onClick={this.submitVote}
         >Submit</button>
         <p>graph of poll results</p>
       </div>
