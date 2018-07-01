@@ -26,14 +26,9 @@ class Poll extends Component {
 
 
   submitVote(){
-    let pollId = this.props.match.params.id
-    let pollsLessOne = this.props.polls.reduce((arr, obj) => {
-    console.log(arr)
-      if (pollId !== obj._id) arr.push(obj)
-      return arr
-    }, [])
-    console.log('after reduce', pollsLessOne.length, pollsLessOne)
-    this.props.actions.vote(this.state.selectedAnswer, pollId, pollsLessOne)
+    const { match: { params: { id } }, auth: { userId } } = this.props
+    const { selectedAnswer } = this.state;
+    this.props.actions.vote(selectedAnswer, id, userId);
   }
 
   render() {

@@ -29,17 +29,18 @@ const changeStatus = (nextStatus) => {
   }
 }
 
-const vote = (answer, pollId, polls) => {
-  return (dispatch, getState) => {
-    axios.put(`${BASE_URL}/poll/:id/vote`, {
-      pollId,
-      userId: getState().auth.userId,
+const vote = (answer, pollId, userId) => {
+  return (dispatch) => {
+    axios.put(`${BASE_URL}/poll/${pollId}/vote`, {
+      userId,
       answer
     })
     .then( ({ data }) => {
+      // listen for errors from server
+      // poll does not exist or user has already voted
       dispatch({
         type: VOTE,
-        polls: polls.push(data.poll)
+        payload: data.poll,
       })
     })
   }
