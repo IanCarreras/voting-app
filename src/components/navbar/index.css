@@ -12,6 +12,10 @@
   font-weight: 300;
 }
 
+.app-title:hover {
+  cursor: pointer;
+}
+
 .pinterest-icon {
   float: left;
   margin-top: 7px;

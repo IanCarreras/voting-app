@@ -11,13 +11,21 @@ export default class AuthService {
     })
     this.lock.on('authenticated', this._doAuthentication.bind(this))
     this.login = this.login.bind(this)
+    this.logout = this.logout.bind(this)
   }
 
   _doAuthentication(authResult) {
-    this.setToken(authResult)
-    store.dispatch({
-      type: 'CHANGE_STATUS',
-      payload: true
+    this.lock.getUserInfo(authResult.accessToken, (err, profile) => {
+      if (err) return console.log(err)
+      this.setToken(authResult);
+      this.setUserId(profile.sub);
+      store.dispatch({
+        type: 'CHANGE_STATUS',
+        payload: {
+          isLoggedIn: true,
+          userId: profile.sub
+        }
+      })
     })
   }
 
@@ -26,11 +34,19 @@ export default class AuthService {
   }
 
   loggedIn() {
-    return !!this.getToken()
+    return !!this.getToken() && !!this.getUserId();
+  }
+
+  setUserId(userId) {
+    localStorage.setItem('user_id', userId);
   }
 
   setToken(authObject) {
     localStorage.setItem('id_token', authObject.idToken)
+  }
+
+  getUserId() {
+    return localStorage.getItem('user_id');
   }
 
   getToken() {
@@ -39,9 +55,13 @@ export default class AuthService {
 
   logout() {
     localStorage.removeItem('id_token')
+    localStorage.removeItem('user_id')
     store.dispatch({
       type: 'CHANGE_STATUS',
-      payload: false
+      payload: {
+        isLoggedIn: false,
+        userId: null
+      }
     })
   }
 }

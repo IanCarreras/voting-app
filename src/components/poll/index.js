@@ -4,12 +4,15 @@ import { bindActionCreators } from 'redux'
 import actionCreators from '../../actions'
 import _ from 'lodash'
 
+import Chart from '../chart'
+
 class Poll extends Component {
   constructor(props){
     super(props)
     this.state = { selectedAnswer: '' }
 
     this.selectAnswer = this.selectAnswer.bind(this)
+    this.submitVote = this.submitVote.bind(this)
   }
 
   renderOptions(answers){
@@ -20,12 +23,19 @@ class Poll extends Component {
 
   selectAnswer(event){
     this.setState({ selectedAnswer: event.target.value })
+  }
 
+
+
+  submitVote(){
+    const { match: { params: { id } }, auth: { userId } } = this.props
+    const { selectedAnswer } = this.state;
+    this.props.actions.vote(selectedAnswer, id, userId);
   }
 
   render() {
     const pollId = this.props.match.params.id
-    const poll = this.props.polls.find((poll) => poll._id === pollId )
+    const poll = this.props.polls.find((poll) => poll._id === pollId)
 
     if (!poll) {
       return (
@@ -50,9 +60,10 @@ class Poll extends Component {
           {this.renderOptions(poll.answers)}
         </select>
         <button
-          disabled={this.props.auth.isLoggedIn === false}
+          onClick={this.submitVote}
         >Submit</button>
         <p>graph of poll results</p>
+        <Chart data={poll} />
       </div>
     )
   }
