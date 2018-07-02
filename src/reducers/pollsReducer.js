@@ -1,6 +1,7 @@
 import {
   GET_POLLS,
-  VOTE
+  VOTE,
+  ALREADY_VOTED
 } from '../constants'
 
 import _ from 'lodash'
@@ -14,6 +15,8 @@ export default (state = [], action) => {
       const idx = _.findIndex(newState, { _id: action.payload._id })
       newState.splice(idx, 1, action.payload);
       return newState;
+    case ALREADY_VOTED:
+      return state;
     default:
       return state
   }

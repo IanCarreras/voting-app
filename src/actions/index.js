@@ -2,7 +2,8 @@ import axios from 'axios'
 import {
   GET_POLLS,
   CHANGE_STATUS,
-  VOTE
+  VOTE,
+  ALREADY_VOTED
 } from '../constants'
 
 const BASE_URL = 'http://localhost:3030'
@@ -29,6 +30,12 @@ const changeStatus = (nextStatus) => {
   }
 }
 
+const alreadyVoted = () => {
+    return {
+      type: ALREADY_VOTED
+    }
+}
+
 const vote = (answer, pollId, userId) => {
   return (dispatch) => {
     axios.put(`${BASE_URL}/poll/${pollId}/vote`, {
@@ -36,11 +43,15 @@ const vote = (answer, pollId, userId) => {
       answer
     })
     .then( ({ data }) => {
-      // listen for errors from server
-      // poll does not exist or user has already voted
       dispatch({
         type: VOTE,
         payload: data.poll,
+      })
+    })
+    .catch((error) => {
+      alert('This user has already voted')
+      dispatch({
+        type: ALREADY_VOTED
       })
     })
   }
@@ -49,5 +60,6 @@ const vote = (answer, pollId, userId) => {
 export default {
   getPolls,
   changeStatus,
-  vote
+  vote,
+  alreadyVoted
 }
