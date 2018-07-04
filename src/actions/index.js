@@ -10,7 +10,7 @@ const BASE_URL = 'http://localhost:3030'
 
 const getPolls = () => {
   return (dispatch) => {
-    axios.get(`${BASE_URL}/poll`)
+    axios.get(`${BASE_URL}/polls`)
     .then( ({ data }) => {
       dispatch({
         type: GET_POLLS,

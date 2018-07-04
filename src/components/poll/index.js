@@ -5,6 +5,7 @@ import actionCreators from '../../actions'
 import _ from 'lodash'
 
 import Chart from '../chart'
+import './index.css'
 
 class Poll extends Component {
   constructor(props){
