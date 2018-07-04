@@ -8,6 +8,7 @@ import './App.css'
 import Navbar from './components/navbar'
 import PollList from './components/container'
 import Poll from './components/poll'
+import CreatePoll from './components/create-poll'
 
 class App extends Component {
 
@@ -22,6 +23,7 @@ class App extends Component {
       <div className="App">
         <Navbar auth={auth} actions={actions}/>
         <header className="App-header">FCC Voter app</header>
+        {this.props.createPoll && <CreatePoll actions={this.props.actions} auth={auth} />}
         <BrowserRouter>
           <Switch>
             <Route path="/" exact component={PollList} />
@@ -33,8 +35,8 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = ({ polls, auth }) => {
-  return { polls, auth }
+const mapStateToProps = ({ polls, auth, createPoll }) => {
+  return { polls, auth, createPoll }
 }
 
 const mapDispatchToProps = (dispatch) => {

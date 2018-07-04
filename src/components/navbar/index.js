@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
-import { SocialIcon } from 'react-social-icons'
+import createHistory from "history/createBrowserHistory"
 import './index.css'
+
+const history = createHistory()
 
 class NavBar extends Component {
   constructor(props) {
@@ -19,19 +21,22 @@ class NavBar extends Component {
   }
 
   render() {
-    const { auth } = this.props
+    const { auth, actions } = this.props
     return (
       <div className="navbar">
-        <h1 className="app-title">Vote</h1>
-        {auth.isLoggedIn && <button className="add-pin-button"> + </button>}
+        <h1
+          className="app-title"
+          onClick={() => history.goBack()}
+        >
+          Home
+        </h1>
+        {auth.isLoggedIn && <button className="create-poll-button" onClick={actions.createPoll}>Create New Poll</button>}
 
         {auth.isLoggedIn
         ?
           <button className="log-button" onClick={this.handleLogout}>Logout</button>
         :
-          <button className="log-button" onClick={this.handleLogin}>
-            <SocialIcon network="twitter" style={{ height: 25, width: 25 }} /> Login
-          </button>
+          <button className="log-button" onClick={this.handleLogin}>Login</button>
         }
       </div>
     );

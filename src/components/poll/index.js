@@ -4,6 +4,8 @@ import { bindActionCreators } from 'redux'
 import actionCreators from '../../actions'
 import _ from 'lodash'
 
+import Chart from '../chart'
+
 class Poll extends Component {
   constructor(props){
     super(props)
@@ -52,7 +54,7 @@ class Poll extends Component {
         <button
           disabled={this.props.auth.isLoggedIn === false}
         >Submit</button>
-        <p>graph of poll results</p>
+        <Chart data={poll} />
       </div>
     )
   }

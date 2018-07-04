@@ -1,14 +1,15 @@
 import axios from 'axios'
 import {
   GET_POLLS,
-  CHANGE_STATUS
+  CHANGE_STATUS,
+  CREATE_POLL
 } from '../constants'
 
 const BASE_URL = 'http://localhost:3030'
 
 const getPolls = (polls) => {
   return (dispatch) => {
-    axios.get(`${BASE_URL}/poll`)
+    axios.get(`${BASE_URL}/polls`)
     .then( ({ data }) => {
       dispatch({
         type: GET_POLLS,
@@ -28,7 +29,14 @@ const changeStatus = (nextStatus) => {
   }
 }
 
+const createPoll = () => {
+  return {
+    type: CREATE_POLL
+  }
+}
+
 export default {
   getPolls,
-  changeStatus
+  changeStatus,
+  createPoll
 }
