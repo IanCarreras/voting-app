@@ -4,6 +4,10 @@
   margin: -50px auto;
 }
 
+.input-field-cotainer {
+  overflow: scroll;
+}
+
 .popup-outer {
   position: fixed;
   width: 100%;
