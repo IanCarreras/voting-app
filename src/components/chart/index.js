@@ -8,10 +8,11 @@ const Chart = (props) => {
 
   return (
   	<BarChart
+      className="bar-chart"
       width={600}
       height={300}
       data={chartData}
-      margin={{top: 5, right: 30, left: 20, bottom: 5}}
+      margin={{top: 5, right: 30, left: 50, bottom: 5}}
     >
      <CartesianGrid strokeDasharray="3 3"/>
      <XAxis dataKey="name"/>

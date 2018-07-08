@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 
-import AnswerInput from '../answer-input'
 import './index.css'
 
 class CreatePoll extends Component {
@@ -20,9 +19,11 @@ class CreatePoll extends Component {
 
   handleSubmit() {
     const { question, answers } = this.state
+    const { actions, auth } = this.props
     const arrayAnswers = answers.split(',').map(answer => answer.trim())
-    console.log('our data sent to action creator', { question, arrayAnswers })
-    //this.props.actions.addPoll(question, arrayAnswers)
+    console.log('our data sent to action creator', { question, arrayAnswers, user: auth.userId })
+    actions.savePoll(question, arrayAnswers, auth.userId)
+    actions.getPolls()
   }
 
   render() {

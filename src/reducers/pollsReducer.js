@@ -1,7 +1,8 @@
 import {
   GET_POLLS,
   VOTE,
-  ALREADY_VOTED
+  ALREADY_VOTED,
+  SAVE_POLL
 } from '../constants'
 
 import _ from 'lodash'
@@ -17,6 +18,8 @@ export default (state = [], action) => {
       return newState;
     case ALREADY_VOTED:
       return state;
+    case SAVE_POLL:
+      return action.data;
     default:
       return state
   }

@@ -4,7 +4,8 @@ import {
   CHANGE_STATUS,
   CREATE_POLL,
   VOTE,
-  ALREADY_VOTED
+  ALREADY_VOTED,
+  SAVE_POLL
 } from '../constants'
 
 const BASE_URL = 'http://localhost:3030'
@@ -37,6 +38,29 @@ const createPoll = () => {
   }
 }
 
+const savePoll = (question, answers, user) => {
+  return (dispatch) => {
+    axios.post(`${BASE_URL}/poll`, {
+      question,
+      answers,
+      user
+    })
+    .then( ({ data }) => {
+      dispatch({
+        type: SAVE_POLL,
+        data
+      })
+      dispatch({
+        type: CREATE_POLL
+      })
+    })
+    .catch((error) => {
+      alert('unauthorized access')
+      console.log(error)
+    })
+  }
+}
+
 const alreadyVoted = () => {
   return {
     type: ALREADY_VOTED
@@ -52,7 +76,7 @@ const vote = (answer, pollId, userId) => {
     .then( ({ data }) => {
       dispatch({
         type: VOTE,
-        payload: data.poll,
+        payload: data.poll
       })
     })
     .catch((error) => {
@@ -69,5 +93,6 @@ export default {
   changeStatus,
   createPoll,
   vote,
-  alreadyVoted
+  alreadyVoted,
+  savePoll
 }
