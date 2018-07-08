@@ -49,7 +49,7 @@ class CreatePoll extends Component {
             <button className="add-answer-button" onClick={this.addInputField}>+</button>
           </div>
 
-          <div className="ipnut-field-container">
+          <div className="input-field-container">
             <input
               className="answer-input"
               name="answer"

@@ -4,8 +4,9 @@
   margin: -50px auto;
 }
 
-.input-field-cotainer {
-  overflow: scroll;
+.input-field-container {
+  overflow-y: auto;
+  height: 100px;
 }
 
 .popup-outer {

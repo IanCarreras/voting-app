@@ -54,7 +54,7 @@ class Poll extends Component {
         <button
           disabled={this.props.auth.isLoggedIn === false}
         >Submit</button>
-        <Chart data={poll} />
+        <Chart data={poll.answers} />
       </div>
     )
   }
