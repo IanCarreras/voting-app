@@ -1,10 +1,11 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 const renderPolls = (polls) => {
   return polls.polls.map((poll, i) => {
     return (
       <div key={i} className="poll">
-        <a href={`/${poll._id}`}>{poll.question}</a>
+        <Link to={`/${poll._id}`}>{poll.question}</Link>
       </div>
     )
   })

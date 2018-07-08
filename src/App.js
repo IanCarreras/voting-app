@@ -27,7 +27,7 @@ class App extends Component {
         <BrowserRouter>
           <Switch>
             <Route path="/" exact component={PollList} />
-            <Route path="/:id" component={Poll} />
+            <Route path="/:id" component={Poll}  />
           </Switch>
         </BrowserRouter>
       </div>
