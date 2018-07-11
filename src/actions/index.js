@@ -5,7 +5,8 @@ import {
   CREATE_POLL,
   VOTE,
   ALREADY_VOTED,
-  SAVE_POLL
+  SAVE_POLL,
+  DELETE_POLL
 } from '../constants'
 
 const BASE_URL = 'http://localhost:3030'
@@ -88,11 +89,26 @@ const vote = (answer, pollId, userId) => {
   }
 }
 
+const deletePoll = (pollId) => {
+  return (dispatch) => {
+    axios.delete(`${BASE_URL}/poll/${pollId}`, {
+      pollId
+    })
+    .then( ({ data }) => {
+      dispatch({
+        type: DELETE_POLL,
+        payload: pollId
+      })
+    })
+  }
+}
+
 export default {
   getPolls,
   changeStatus,
   createPoll,
   vote,
   alreadyVoted,
-  savePoll
+  savePoll,
+  deletePoll
 }
