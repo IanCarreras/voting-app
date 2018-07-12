@@ -7,10 +7,10 @@ import Polls from '../render-polls'
 
 class Container extends Component {
   render() {
-    const { polls, actions } = this.props
+    const { polls, actions, auth } = this.props
     return (
       <div>
-        <Polls polls={polls} actions={actions}/>
+        <Polls polls={polls} actions={actions} auth={auth}/>
       </div>
     )
   }
