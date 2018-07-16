@@ -3,7 +3,8 @@ import {
   VOTE,
   ALREADY_VOTED,
   SAVE_POLL,
-  DELETE_POLL
+  DELETE_POLL,
+  ADD_ANSWER
 } from '../constants'
 
 import _ from 'lodash'
@@ -16,6 +17,7 @@ export default (state = [], action) => {
     case GET_POLLS:
       return action.data
     case VOTE:
+    case ADD_ANSWER:
       newState = _.cloneDeep(state)
       idx = _.findIndex(newState, { _id: action.payload._id })
       newState.splice(idx, 1, action.payload)
