@@ -17,7 +17,10 @@ class Container extends Component {
 }
 
 const mapStateToProps = ({ polls, auth }) => {
-  return { polls, auth }
+  return {
+    polls: polls.filteredPolls, 
+    auth
+  }
 }
 
 const mapDispatchToProps = (dispatch) => {

@@ -7,7 +7,8 @@ import {
   ALREADY_VOTED,
   SAVE_POLL,
   DELETE_POLL,
-  ADD_ANSWER
+  ADD_ANSWER,
+  DISPLAY_POLLS
 } from '../constants'
 
 const BASE_URL = 'http://localhost:3030'
@@ -119,6 +120,16 @@ const addAnswer = (answer, pollId) => {
   }
 }
 
+const displayPolls = (filterBy, userId) => {
+  return {
+    type: DISPLAY_POLLS,
+    payload: {
+      filterBy,
+      userId
+    }
+  }
+}
+
 export default {
   getPolls,
   changeStatus,
@@ -127,5 +138,6 @@ export default {
   alreadyVoted,
   savePoll,
   deletePoll,
-  addAnswer
+  addAnswer,
+  displayPolls
 }
