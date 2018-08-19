@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux'
 import actionCreators from '../../actions'
 
 import Polls from '../render-polls'
+import './index.css'
 
 class Container extends Component {
   render() {
@@ -18,7 +19,7 @@ class Container extends Component {
 
 const mapStateToProps = ({ polls, auth }) => {
   return {
-    polls: polls.filteredPolls, 
+    polls: polls.filteredPolls,
     auth
   }
 }
