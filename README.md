@@ -1,2 +1,4 @@
-This is a Voting application created for freeCodeCamp's projects section.  The backend is at /voting-api.
+Created using React and Redux
+Authentication using Auth0
 
+The backend is at /voting-api.
